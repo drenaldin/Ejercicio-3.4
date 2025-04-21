@@ -106,9 +106,16 @@ function reiniciarJuego() {
   localStorage.removeItem("errores");
   listaBitacora.innerHTML = "";
 
-  fetch("http://localhost:3000/respuestas", {
-    method: "DELETE"
-  });
+  // Borrar todas las respuestas del JSON
+  fetch("http://localhost:3000/respuestas")
+    .then(res => res.json())
+    .then(data => {
+      data.forEach(item => {
+        fetch(`http://localhost:3000/respuestas/${item.id}`, {
+          method: "DELETE"
+        });
+      });
+    });
 
   mostrarPregunta();
 }
@@ -118,26 +125,22 @@ document.getElementById("reiniciar").onclick = reiniciarJuego;
 function agregarABitacoraVisual(respuesta) {
   const item = document.createElement("li");
   item.className = respuesta.correct ? "correcta" : "incorrecta";
-  item.textContent = `P: ${respuesta.question} → Elegiste: ${respuesta.selected}`;
+  item.innerHTML = `
+    <span>P: ${respuesta.question} → Elegiste: ${respuesta.selected}</span>
+    <button class="cerrar">x</button>
+  `;
 
-  // Crear botón de cerrar
-  const botonCerrar = document.createElement("boton");
-  botonCerrar.textContent = "x"; // ícono de cerrar
-  botonCerrar.style.contain="1px";
-  botonCerrar.style.cursor = "pointer";
-  botonCerrar.onclick = function () {
-    item.remove(); // Elimina el <li> del DOM
+  // botón cerrar solo borra del DOM
+  item.querySelector(".cerrar").onclick = function () {
+    item.remove();
   };
 
-  // Agregar el botón al item
-  item.appendChild(botonCerrar);
-
-  // Agregar item a la lista
   listaBitacora.prepend(item);
 }
 
-
 function guardarEnServidor(respuesta) {
+  // generamos ID manual por si usamos DELETE específico
+  respuesta.id = Math.random().toString(16).slice(2, 6);
   fetch("http://localhost:3000/respuestas", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

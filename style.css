@@ -25,7 +25,6 @@ body {
   text-align: center;
 }
 
-
 .bitacora {
   background-color: #fff;
   padding: 1rem;
@@ -51,8 +50,12 @@ body {
 #lista-bitacora li {
   margin-bottom: 0.5rem;
   border-left: 4px solid #ccc;
-  padding-left: 0.5rem;
+  padding: 0.4rem 0.5rem;
+  position: relative;
   word-wrap: break-word;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .correcta {
@@ -64,15 +67,24 @@ body {
   border-color: #f44336;
   color: #b71c1c;
 }
-boton{
+
+.opcion {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  margin: 0.5rem;
   font-size: 1rem;
-  float: right;
-  padding-left: 3px;
-  padding-right: 3px;
-  border-radius: 5px;
-  color: #f4f4f4;
-  background-color: #b71c1c;
+  border: none;
+  border-radius: 8px;
+  background-color: #1976d2;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
+
+.opcion:hover {
+  background-color: #1565c0;
+}
+
 button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
@@ -88,6 +100,22 @@ button:hover {
   background-color: #1565c0;
 }
 
+/* Botón "x" para borrar del historial visual */
+.cerrar {
+  margin-left: 10px;
+  font-size: 0.9rem;
+  padding: 2px 8px;
+  border: none;
+  background-color: #d32f2f;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cerrar:hover {
+  background-color: #b71c1c;
+}
+
 @media (max-width: 768px) {
   .main-container {
     flex-direction: column;
@@ -96,5 +124,10 @@ button:hover {
 
   .bitacora {
     max-width: 90%;
+  }
+
+  .opcion {
+    width: 100%;
+    margin: 0.3rem 0;
   }
 }
