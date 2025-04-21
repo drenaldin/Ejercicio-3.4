@@ -1,5 +1,6 @@
+
 body {
-  font-family: sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
@@ -25,109 +26,123 @@ body {
   text-align: center;
 }
 
+.juego h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+#pregunta {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+#opciones button {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#opciones button:hover {
+  background-color: #0056b3;
+}
+
+#feedback {
+  margin-top: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+}
+
+#feedback-icon {
+  font-size: 1.5rem;
+}
+
 .bitacora {
   background-color: #fff;
   padding: 1rem;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
   max-width: 300px;
-  width: 100%;
+  width: 90%;
+  height: fit-content;
 }
 
 .bitacora h2 {
-  text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
-#lista-bitacora {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0.9rem;
+.bitacora ul {
+  list-style-type: none;
+  padding-left: 0;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
-#lista-bitacora li {
-  margin-bottom: 0.5rem;
-  border-left: 4px solid #ccc;
-  padding: 0.4rem 0.5rem;
-  position: relative;
-  word-wrap: break-word;
+.bitacora li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+.texto-bitacora {
+  flex: 1;
+  margin-right: 1rem;
+  word-break: break-word;
+}
+
+.eliminar-item {
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.eliminar-item:hover {
+  color: red;
 }
 
 .correcta {
-  border-color: #4caf50;
-  color: #2e7d32;
+  color: green;
+  font-weight: 600;
 }
 
 .incorrecta {
-  border-color: #f44336;
-  color: #b71c1c;
+  color: red;
+  font-weight: 600;
 }
 
-.opcion {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  margin: 0.5rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #1976d2;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.opcion:hover {
-  background-color: #1565c0;
-}
-
-button {
+button#reiniciar {
   margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
+  background-color: #28a745;
+  color: white;
+  font-weight: 600;
   border: none;
   border-radius: 8px;
-  background-color: #1976d2;
-  color: white;
+  padding: 0.5rem 1rem;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #1565c0;
+button#reiniciar:hover {
+  background-color: #1e7e34;
 }
 
-/* Botón "x" para borrar del historial visual */
-.cerrar {
-  margin-left: 10px;
-  font-size: 0.9rem;
-  padding: 2px 8px;
-  border: none;
-  background-color: #d32f2f;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.cerrar:hover {
-  background-color: #b71c1c;
-}
-
-@media (max-width: 768px) {
-  .main-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .bitacora {
-    max-width: 90%;
-  }
-
-  .opcion {
-    width: 100%;
-    margin: 0.3rem 0;
-  }
-}
