@@ -127,12 +127,14 @@ function agregarABitacoraVisual(respuesta) {
   item.className = respuesta.correct ? "correcta" : "incorrecta";
   item.innerHTML = `
     <span>P: ${respuesta.question} → Elegiste: ${respuesta.selected}</span>
-    <button class="cerrar">x</button>
-  `;
+    <button class="cerrar">x</button>`;
 
-  // botón cerrar solo borra del DOM
   item.querySelector(".cerrar").onclick = function () {
-    item.remove();
+     item.remove();
+
+    fetch(`http://localhost:3000/respuestas/${respuesta.id}`, {
+      method: "DELETE"
+    }).catch(err => console.error("Error al eliminar del servidor:", err));
   };
 
   listaBitacora.prepend(item);
